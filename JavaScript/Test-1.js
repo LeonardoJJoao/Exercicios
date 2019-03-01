@@ -36,13 +36,10 @@ var index;
 
 request.open('GET', 'https://ghibliapi.herokuapp.com/films', false); // adicionar ?limit=4 pra ter um limite de 4 -- Exercicio 1 da API
 
-request.onload = function () 
-{
+request.onload = function () {
     var data = JSON.parse(this.response);
-    if (request.status >= 200 && request.status < 400) 
-    {
-        data.forEach(movie => 
-        {
+    if (request.status >= 200 && request.status < 400) {
+        data.forEach(movie => {
             filmTitleArray.push(movie.title);
             console.log(movie.title);
             console.log(filmTitleArray);
@@ -56,20 +53,16 @@ request.send();
 
 document.getElementById("selected-sentence").innerHTML = filmTitleArray[Math.floor(Math.random() * filmTitleArray.length)];
 
-function getIndex() 
-{
+function getIndex() {
     index = filmTitleArray.indexOf(document.getElementById("selected-sentence").innerHTML);
     return index;
 }
 
-function newSentence() 
-{
-    if (filmTitleArray.length <= 0) 
-    {
+function newSentence() {
+    if (filmTitleArray.length <= 0) {
         document.getElementById("selected-sentence").innerHTML = "End of list";
     }
-    else if (favouriteFilms.includes(document.getElementById("selected-sentence").innerHTML)) 
-    {
+    else if (favouriteFilms.includes(document.getElementById("selected-sentence").innerHTML)) {
         getIndex()
 
         filmTitleArray.splice(index, 1);
@@ -82,12 +75,10 @@ function newSentence()
     document.getElementById("selected-sentence").innerHTML = filmTitleArray[Math.floor(Math.random() * filmTitleArray.length)];
 }
 
-function addSentenceTable() 
-{
-    if (favouriteFilms.includes(document.getElementById("selected-sentence").innerHTML)) 
-    {
+function addSentenceTable() {
+    if (favouriteFilms.includes(document.getElementById("selected-sentence").innerHTML)) {
         console.log("alredy in array");
-    } else{
+    } else {
         favouriteFilms.push(document.getElementById("selected-sentence").innerHTML);
         console.log(favouriteFilms);
 
